@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+ROOT_URL="https://sumi.news/"
 token="${1:-"${SUZURI_TOKEN}"}"
 folder="${2:-"${SUZURI_FOLDER}"}"
 
 if [[ -z "${token}" ]]; then
 	cat <<EOF
-usage: sumi token [folder]
+usage: $(basename "${0}") token [folder]
 
 positional arguments:
   token           sumi.news session token
@@ -30,9 +31,9 @@ curl_command=(
 )
 
 if [[ -n "${folder}" ]]; then
-	curl_command+=("https://sumi.news/?folder=${folder}")
+	curl_command+=("${ROOT_URL}?folder=${folder}")
 else
-	curl_command+=("https://sumi.news/")
+	curl_command+=("${ROOT_URL}")
 fi
 
 body="$("${curl_command[@]}" | pup '.mt-6' | html2md -i || true)"
