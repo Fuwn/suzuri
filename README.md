@@ -45,6 +45,12 @@ variables `SUZURI_TOKEN` and `SUZURI_FOLDER`.
 - [html2md](https://github.com/suntong/html2md)
 - [glow](https://github.com/charmbracelet/glow)
 
+### Cool Ideas
+
+- Pipe it into [`gum`'s](https://github.com/charmbracelet/gum) `choose` subcommand
+- Display the most recent feed item in your status-bar
+- Echo out the most recent feed item when you start your shell
+
 ## Licence
 
 This project is licensed with the [GNU General Public License v3.0](LICENSE).
