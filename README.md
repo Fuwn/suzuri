@@ -20,8 +20,16 @@ Obtain your sumi.news token via the `s` cookie on sumi.news.
 ### `--help`
 
 ```text
-usage: sumi [token] [folder]
+usage: sumi token [folder]
 
+positional arguments:
+  token           sumi.news session token
+  folder          sumi.news feed folder
+
+environment variables:
+  SUZURI_TOKEN    substitution for [token]
+  SUZURI_FOLDER   substitution for [folder]
+  SUZURI_REVERSE  reverse the output feed
 ```
 
 Optionally, omit the token and folder arguments and export the environment
