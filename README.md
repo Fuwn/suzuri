@@ -6,6 +6,15 @@ Who is Suzuri? Sumi Sakurasawa's dog.
 
 ## Usage
 
+You can download the script and run it locally, but I'd recommend fetching and
+running it from GitHub to ensure that you are always on the latest version:
+
+```shell
+bash <(curl -s "https://raw.githubusercontent.com/Fuwn/suzuri/main/suzuri")
+```
+
+### Token
+
 Obtain your sumi.news token via the `s` cookie on sumi.news.
 
 ### `--help`
