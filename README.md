@@ -26,10 +26,11 @@ usage: sumi token [folder]
 
 positional arguments:
   token           sumi.news session token
-  folder          sumi.news feed folder\environment variables:
-  SUZURI_TOKEN    substitution for [token]
+  folder          sumi.news feed folder
 
-  SUZURI_FOLDER   substitution for [folder]
+environment variables:
+  SUZURI_TOKEN    substitution for token
+  SUZURI_FOLDER   substitution for folder
   SUZURI_REVERSE  reverse the output feed
   SUZURI_MINIMAL  output only linked titles
   SUZURI_RAW      output raw markdown
