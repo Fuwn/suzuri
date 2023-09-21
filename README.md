@@ -13,6 +13,8 @@ running it from GitHub to ensure that you are always on the latest version:
 bash <(curl -s "https://raw.githubusercontent.com/Fuwn/suzuri/main/suzuri")
 ```
 
+> Hint: Alias this in your shell profile: `alias suzuri="bash <(curl -s "https://raw.githubusercontent.com/Fuwn/suzuri/main/suzuri")"`
+
 ### Token
 
 Obtain your sumi.news token via the `s` cookie on sumi.news.
