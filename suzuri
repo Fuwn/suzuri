@@ -22,4 +22,10 @@ else
 	curl_command+=("https://sumi.news/")
 fi
 
-"${curl_command[@]}" | pup '.mt-6' | html2md -i | glow
+body="$("${curl_command[@]}" | pup '.mt-6' | html2md -i)"
+
+if [[ -n "${SUZURI_REVERSE}" ]]; then
+	body="$(echo "${body}" | tac)"
+fi
+
+echo "${body}" | glow

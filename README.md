@@ -10,12 +10,13 @@ Obtain your sumi.news token via the `s` cookie on sumi.news.
 
 ### `--help`
 
-```
+```text
 usage: sumi [token] [folder]
 
 ```
 
-Optionally, omit the token and folder arguments and export the environment variables `SUZURI_TOKEN` and `SUZURI_FOLDER`.
+Optionally, omit the token and folder arguments and export the environment
+variables `SUZURI_TOKEN` and `SUZURI_FOLDER`.
 
 ### Dependencies
 
