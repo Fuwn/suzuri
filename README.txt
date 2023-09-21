@@ -1,0 +1,1 @@
+usage: sumi [token] [folder]

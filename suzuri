@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+token="${1:-"${SUZURI_TOKEN}"}"
+folder="${2:-"${SUZURI_FOLDER}"}"
+
+if [[ -z "${token}" ]]; then
+	printf "usage: sumi [token] [folder]\n\n"
+
+	exit
+fi
+
+curl_command=(
+	'curl'
+	'--silent'
+	'--cookie'
+	"s=${token}"
+)
+
+if [[ -n "${folder}" ]]; then
+	curl_command+=("https://sumi.news/?folder=${folder}")
+else
+	curl_command+=("https://sumi.news/")
+fi
+
+"${curl_command[@]}" | pup '.mt-6' | html2md -i | glow
