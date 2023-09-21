@@ -35,14 +35,14 @@ else
 	curl_command+=("https://sumi.news/")
 fi
 
-body="$("${curl_command[@]}" | pup '.mt-6' | html2md -i)"
+body="$("${curl_command[@]}" | pup '.mt-6' | html2md -i || true)"
 
 if [[ -n "${SUZURI_REVERSE}" ]]; then
 	body="$(echo "${body}" | tac)"
 fi
 
 if [[ -n "${SUZURI_MINIMAL}" ]]; then
-	body="$(echo "${body}" | grep "##" | sed "s/##//")"
+	body="$(echo "${body}" | grep "##" | sed "s/##//" || true)"
 fi
 
 if [[ -n "${SUZURI_RAW}" ]]; then
