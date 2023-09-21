@@ -45,5 +45,9 @@ fi
 if [[ -n "${SUZURI_RAW}" ]]; then
 	echo "${body}"
 else
-	echo "${body}" | glow
+	if [[ -n "${SUZURI_MINIMAL}" ]]; then
+		echo "${body}" | glow -w 1
+	else
+		echo "${body}" | glow
+	fi
 fi
