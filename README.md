@@ -2,6 +2,8 @@
 
 Command-line Interface to sumi.news
 
+Who is Suzuri? Sumi Sakurasawa's dog.
+
 ## Usage
 
 Obtain your sumi.news token via the `s` cookie on sumi.news.
