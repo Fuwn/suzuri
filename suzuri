@@ -4,17 +4,20 @@ token="${1:-"${SUZURI_TOKEN}"}"
 folder="${2:-"${SUZURI_FOLDER}"}"
 
 if [[ -z "${token}" ]]; then
-	printf "%s\n\n%s\n%s\n%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n" \
-		"usage: sumi token [folder]" \
-		"positional arguments:" \
-		"  token           sumi.news session token" \
-		"  folder          sumi.news feed folder" \
-		"environment variables:" \
-		"  SUZURI_TOKEN    substitution for token" \
-		"  SUZURI_FOLDER   substitution for folder" \
-		"  SUZURI_REVERSE  reverse the output feed" \
-		"  SUZURI_MINIMAL  output only linked titles" \
-		"  SUZURI_RAW      output raw markdown"
+	cat <<EOF
+usage: sumi token [folder]
+
+positional arguments:
+  token           sumi.news session token
+  folder          sumi.news feed folder
+
+environment variables:
+  SUZURI_TOKEN    substitution for token
+  SUZURI_FOLDER   substitution for folder
+  SUZURI_REVERSE  reverse the output feed
+  SUZURI_MINIMAL  output only linked titles
+  SUZURI_RAW      output raw markdown
+EOF
 
 	exit
 fi
