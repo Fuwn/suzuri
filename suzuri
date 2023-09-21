@@ -4,7 +4,7 @@ token="${1:-"${SUZURI_TOKEN}"}"
 folder="${2:-"${SUZURI_FOLDER}"}"
 
 if [[ -z "${token}" ]]; then
-	printf "%s\n\n%s\n%s\n%s\n\n%s\n%s\n%s\n%s\n" \
+	printf "%s\n\n%s\n%s\n%s\%s\n\n%s\n%s\n%s\n%s\n" \
 		"usage: sumi token [folder]" \
 		"positional arguments:" \
 		"  token           sumi.news session token" \
@@ -12,7 +12,8 @@ if [[ -z "${token}" ]]; then
 		"environment variables:" \
 		"  SUZURI_TOKEN    substitution for [token]" \
 		"  SUZURI_FOLDER   substitution for [folder]" \
-		"  SUZURI_REVERSE  reverse the output feed"
+		"  SUZURI_REVERSE  reverse the output feed" \
+		"  SUZURI_MINIMAL  output only linked titles"
 
 	exit
 fi
@@ -34,6 +35,10 @@ body="$("${curl_command[@]}" | pup '.mt-6' | html2md -i)"
 
 if [[ -n "${SUZURI_REVERSE}" ]]; then
 	body="$(echo "${body}" | tac)"
+fi
+
+if [[ -n "${SUZURI_MINIMAL}" ]]; then
+	body="$(echo "${body}" | grep "##" | sed "s/##//")"
 fi
 
 echo "${body}" | glow
