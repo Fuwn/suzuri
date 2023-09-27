@@ -43,7 +43,7 @@ if [[ -n "${SUZURI_REVERSE}" ]]; then
 fi
 
 if [[ -n "${SUZURI_MINIMAL}" ]]; then
-	body="$(echo "${body}" | grep -oP '^##\K.*' | sed "s/##//" || true)"
+	body="$(echo "${body}" | grep -oP '^## \K.*' | sed "s/##//" || true)"
 fi
 
 if [[ -n "${SUZURI_RAW}" ]]; then
