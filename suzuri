@@ -18,6 +18,7 @@ environment variables:
   SUZURI_REVERSE  reverse the output feed
   SUZURI_MINIMAL  output only linked titles
   SUZURI_RAW      output raw markdown
+  SUZURI_RSS      output raw application/rss+xml
 EOF
 
 	exit
@@ -44,6 +45,45 @@ fi
 
 if [[ -n "${SUZURI_MINIMAL}" ]]; then
 	body="$(echo "${body}" | grep -oP '^## \K.*' | sed "s/##//" || true)"
+fi
+
+if [[ -n "${SUZURI_RSS}" ]]; then
+	IFS=$'\n' read -r -d '' -a items <<<"${body}"
+
+	cat <<EOF
+<rss version="2.0">
+  <channel>
+    <title>sumi.news</title>
+    <link>https://sumi.news</link>
+    <description>Read the entire Internet at once – all the news, RSS, and newsletters on one page.</description>
+    <generator>suzuri</generator>
+    <language>en-US</language>
+    <lastBuildDate>$(date +'%a, %d %b %Y %H:%M:%S %z')</lastBuildDate>
+    <pubDate>$(date +'%a, %d %b %Y %H:%M:%S %z')</pubDate>
+EOF
+
+	for item in "${items[@]}"; do
+		if [[ ${item} =~ ^\[(.+)\] ]]; then
+			title="${BASH_REMATCH[1]}"
+		fi
+
+		regex="\((http[^)]+)\)"
+		if [[ ${item} =~ ${regex} ]]; then
+			url="${BASH_REMATCH[1]}"
+		fi
+
+		cat <<EOF
+    <item>
+      <title>${title}</title>
+      <link>${url}</link>
+      <pubDate>$(date -d "today" '+%a, %d %b %Y 00:00:00 %z')</pubDate>
+    </item>
+EOF
+	done
+
+	echo "</channel></rss>"
+
+	exit
 fi
 
 if [[ -n "${SUZURI_RAW}" ]]; then

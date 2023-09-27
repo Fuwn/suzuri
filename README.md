@@ -22,7 +22,7 @@ Obtain your sumi.news token via the `s` cookie on sumi.news.
 ### `--help`
 
 ```text
-usage: sumi token [folder]
+usage: suzuri token [folder]
 
 positional arguments:
   token           sumi.news session token
@@ -34,6 +34,7 @@ environment variables:
   SUZURI_REVERSE  reverse the output feed
   SUZURI_MINIMAL  output only linked titles
   SUZURI_RAW      output raw markdown
+  SUZURI_RSS      output raw application/rss+xml
 ```
 
 Optionally, omit the token and folder arguments and export the environment
@@ -51,6 +52,8 @@ variables `SUZURI_TOKEN` and `SUZURI_FOLDER`.
 - Pipe it into [`gum`'s](https://github.com/charmbracelet/gum) `choose` subcommand
 - Display the most recent feed item in your status-bar
 - Echo out the most recent feed item when you start your shell
+- Generate an RSS feed of your feeds to read with local tooling; e.g.,
+  [newsboat](https://newsboat.org/).
 
 ## Licence
 
