@@ -50,10 +50,14 @@ fi
 if [[ -n "${SUZURI_RSS}" ]]; then
 	IFS=$'\n' read -r -d '' -a items <<<"${body}"
 
+	if [[ -n "${folder}" ]]; then
+		folder_title=" | ${folder}"
+	fi
+
 	cat <<EOF
 <rss version="2.0">
   <channel>
-    <title>sumi.news</title>
+    <title>sumi.news${folder_title}</title>
     <link>https://sumi.news</link>
     <description>Read the entire Internet at once – all the news, RSS, and newsletters on one page.</description>
     <generator>suzuri</generator>
