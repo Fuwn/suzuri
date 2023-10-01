@@ -55,6 +55,15 @@ variables `SUZURI_TOKEN` and `SUZURI_FOLDER`.
 - Generate an RSS feed of your feeds to read with local tooling; e.g.,
   [newsboat](https://newsboat.org/).
 
+### [newsboat](https://newsboat.org/) Integration
+
+```
+# ~/.config/newsboat/urls
+
+"exec:SUZURI_RSS=1 SUZURI_MINIMAL=1 SUZURI_REVERSE=1 /path/to/suzuri <token>"
+"exec:SUZURI_RSS=1 SUZURI_MINIMAL=1 SUZURI_REVERSE=1 /path/to/suzuri <token> <folder>"
+```
+
 ## Licence
 
 This project is licensed with the [GNU General Public License v3.0](LICENSE).
