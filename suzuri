@@ -49,6 +49,8 @@ fi
 
 if [[ -n "${SUZURI_RSS}" ]]; then
 	IFS=$'\n' read -r -d '' -a items <<<"${body}"
+	start_index_time=$(date -d "today" '+%a, %d %b %Y 00:00:00 %z')
+	item_index=1
 
 	if [[ -n "${folder}" ]]; then
 		folder_title=" | ${folder}"
@@ -63,10 +65,13 @@ if [[ -n "${SUZURI_RSS}" ]]; then
     <generator>suzuri</generator>
     <language>en-US</language>
     <lastBuildDate>$(date +'%a, %d %b %Y %H:%M:%S %z')</lastBuildDate>
-    <pubDate>$(date +'%a, %d %b %Y %H:%M:%S %z')</pubDate>
+    <pubDate>$(date +'%a, %d %b %y %h:%m:%s %z')</pubDate>
 EOF
 
 	for item in "${items[@]}"; do
+		item_index=$((item_index + 1))
+		current_time=$(date -d "${start_index_time} + ${item_index} minutes" "+%Y-%m-%dT%H:%M:%SZ")
+
 		if [[ ${item} =~ ^\[(.+)\] ]]; then
 			title="${BASH_REMATCH[1]}"
 		fi
@@ -80,10 +85,12 @@ EOF
     <item>
       <title>${title}</title>
       <link>${url}</link>
-      <pubDate>$(date -d "today" '+%a, %d %b %Y 00:00:00 %z')</pubDate>
+      <pubDate>${current_time}</pubDate>
     </item>
 EOF
 	done
+
+	# $(date -d "today" '+%a, %d %b %Y 00:00:00 %z')
 
 	echo "</channel></rss>"
 
